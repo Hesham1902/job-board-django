@@ -1,0 +1,71 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% load bootstrap5 %}
+<!-- bradcam_area -->
+<div class="bradcam_area bradcam_bg_1">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="bradcam_text">
+          {% block header %}
+            <h3>Profile Summary</h3>
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / bradcam_area -->
+<div class="job_details_area">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        {% block content %}
+          <div class="job_sumary">
+            <div class="summery_header text-center text-uppercase">
+              <h2 class="fs-1">Your profile</h2>
+            </div>
+            <div class="job_content">
+              <div class="col-12 text-center">
+                <!-- Center the image horizontally -->
+                <img style="height: 150px; width: 190px; border-radius: 50%;" src="{{ profile.image.url }}" alt="" />
+              </div>
+              <ul>
+                <li>
+                  {% comment %}first_name: <span>{{ job.published_at|date:'d M o' }}</span> {% endcomment %}First name: <span>{{ profile.user.first_name }}</span>
+                </li>
+                <li>
+                  Username: <span>{{ profile.user.username }}</span>
+                </li>
+                <li>
+                  E-mail: <span>{{ profile.user.email }}</span>
+                </li>
+                <li>
+                  City: <span>
+                    {% if profile.city %}
+                      {{ profile.city }}
+                    {% else %}
+                      N/A
+                    {% endif %}
+                  </span>
+                </li>
+                <li>
+                  Phone number: <span>
+                    {% if profile.phone_number %}
+                      {{ profile.phone_number }}
+                    {% else %}
+                      N/A
+                    {% endif %}
+                  </span>
+                </li>
+              </ul>
+              <div class="p-5">
+                <a class="boxed-btn3 w-100" href="{% url 'accounts:profile_edit' %}">Edit profile</a>
+              </div>
+            </div>
+          </div>
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</div>

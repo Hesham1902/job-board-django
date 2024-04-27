@@ -1,0 +1,11 @@
+{% extends 'base_generic.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form user_form %}
+    {% bootstrap_form profile_form %}
+    <input type="submit" class="boxed-btn3 w-100" value="Update" />
+  </form>
+{% endblock %}
