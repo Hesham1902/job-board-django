@@ -29,13 +29,13 @@
   </head>
 
   <body>
-    <!--    [if lte IE 9]>
+    <!--                    [if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
         <a href="https://browsehappy.com/">upgrade your browser</a> to improve
         your experience and security.
       </p>
-    <![endif]    -->
+    <![endif]                    -->
 
     <!-- header-start -->
     <header>
@@ -55,12 +55,12 @@
                     <nav>
                       <ul id="navigation">
                         <li>
-                          <a href="index.html">home</a>
+                          <a href="/">home</a>
                         </li>
                         <li>
-                          <a href="jobs.html">Browse Job</a>
+                          <a href="{% url 'jobs:job_list' %}">Browse Job</a>
                         </li>
-                        <li>
+                        {% comment %} <li>
                           <a href="#">pages <i class="ti-angle-down"></i></a>
                           <ul class="submenu">
                             <li>
@@ -73,8 +73,8 @@
                               <a href="elements.html">elements</a>
                             </li>
                           </ul>
-                        </li>
-                        <li>
+                        </li> {% endcomment %}
+                        {% comment %} <li>
                           <a href="#">blog <i class="ti-angle-down"></i></a>
                           <ul class="submenu">
                             <li>
@@ -84,9 +84,9 @@
                               <a href="single-blog.html">single-blog</a>
                             </li>
                           </ul>
-                        </li>
+                        </li> {% endcomment %}
                         <li>
-                          <a href="contact.html">Contact</a>
+                          <a href="{% url 'contact:contact' %}">Contact</a>
                         </li>
                       </ul>
                     </nav>
@@ -94,9 +94,16 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                   <div class="Appointment">
-                    <div class="phone_num d-none d-xl-block">
-                      <a href="#">Log in</a>
-                    </div>
+                    {% if request.user.is_authenticated %}
+                      <div class="phone_num d-none d-xl-block">
+                        <a href="{% url 'accounts:profile' %}">Profile</a>
+                      </div>
+                    {% else %}
+                      <div class="phone_num d-none d-xl-block">
+                        <a href="#">Log in</a>
+                      </div>
+                    {% endif %}
+
                     <div class="d-none d-lg-block">
                       <a class="boxed-btn3" href="{% url 'jobs:job_add' %}">Post a Job</a>
                     </div>
@@ -128,9 +135,8 @@
                   <a href="#"><img src="{% static 'img/logo.png' %}" alt="" /></a>
                 </div>
                 <p>
-                  finloan@support.com <br />
-                  +10 873 672 6782 <br />
-                  600/D, Green road, NewYork
+                  heshammaher@outlook.com <br />
+                  +20 1014292883 <br />
                 </p>
                 <div class="socail_links">
                   <ul>
