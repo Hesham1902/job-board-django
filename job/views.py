@@ -34,7 +34,6 @@ def job_detail(request, slug):
 
     return render(request, "job/job_detail.html", {"job": job, "form": form})
 
-
 @login_required
 def add_job(request):
 

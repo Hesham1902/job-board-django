@@ -3,6 +3,7 @@ from django.urls import reverse
 from .forms import SignUpForm, UserForm, ProfileForm
 from django.contrib.auth import authenticate, login
 from .models import Profile
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -27,6 +28,7 @@ def signup(request):
     return render(request, "registration/signup.html", {"form": form})
 
 
+@login_required
 def profile(request):
     profile = Profile.objects.get(user=request.user)
     return render(request, "accounts/profile.html", {"profile": profile})
