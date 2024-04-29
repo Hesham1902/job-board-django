@@ -23,7 +23,7 @@ class Job(models.Model):
     Vacancy = models.IntegerField(default=1)
     Salary = models.IntegerField(default=0)
     experience = models.IntegerField(default=1)
-    categrory = models.ForeignKey("Category", on_delete=models.CASCADE)
+    category = models.ForeignKey("Category", on_delete=models.CASCADE)
     image = models.ImageField(upload_to=image_upload)
     slug = models.SlugField(blank=True, null=True)
 

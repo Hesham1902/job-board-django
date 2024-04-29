@@ -1,4 +1,5 @@
-from django.http import Http404
+import json
+from django.http import Http404, HttpRequest, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from job.models import Job
@@ -34,6 +35,7 @@ def job_detail(request, slug):
 
     return render(request, "job/job_detail.html", {"job": job, "form": form})
 
+
 @login_required
 def add_job(request):
 
@@ -48,3 +50,5 @@ def add_job(request):
         form = JobForm()
 
     return render(request, "job/add_job.html", {"form": form})
+
+

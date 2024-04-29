@@ -29,13 +29,13 @@
   </head>
 
   <body>
-    <!--                    [if lte IE 9]>
+    <!--                            [if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
         <a href="https://browsehappy.com/">upgrade your browser</a> to improve
         your experience and security.
       </p>
-    <![endif]                    -->
+    <![endif]                            -->
 
     <!-- header-start -->
     <header>
@@ -60,6 +60,12 @@
                         <li>
                           <a href="{% url 'jobs:job_list' %}">Browse Job</a>
                         </li>
+
+                        {% if request.user.is_authenticated %}
+                          <li>
+                            <a href="{% url 'accounts:my_posted_jobs' %}">My Jobs</a>
+                          </li>
+                        {% endif %}
                         {% comment %} <li>
                           <a href="#">pages <i class="ti-angle-down"></i></a>
                           <ul class="submenu">
@@ -100,7 +106,7 @@
                       </div>
                     {% else %}
                       <div class="phone_num d-none d-xl-block">
-                        <a href="#">Log in</a>
+                        <a href="{% url 'login' %}">Log in</a>
                       </div>
                     {% endif %}
 

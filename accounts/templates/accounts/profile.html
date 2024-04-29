@@ -26,10 +26,12 @@
               <h2 class="fs-1">Your profile</h2>
             </div>
             <div class="job_content">
-              <div class="col-12 text-center">
-                <!-- Center the image horizontally -->
-                <img style="height: 150px; width: 190px; border-radius: 50%;" src="{{ profile.image.url }}" alt="" />
-              </div>
+              {% if profile.image %}
+                <div class="col-12 text-center">
+                  <!-- Center the image horizontally -->
+                  <img style="height: 150px; width: 190px; border-radius: 50%;" src="{{ profile.image.url }}" alt="" />
+                </div>
+              {% endif %}
               <ul>
                 <li>
                   {% comment %}first_name: <span>{{ job.published_at|date:'d M o' }}</span> {% endcomment %}First name: <span>{{ profile.user.first_name }}</span>

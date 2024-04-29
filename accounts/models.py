@@ -16,7 +16,7 @@ class Profile(models.Model):
         null=True,
     )
     phone_number = models.CharField(max_length=15)
-    image = models.ImageField(upload_to="profile/")
+    image = models.ImageField(upload_to="profile/", blank=True, null=True)
 
     def __str__(self):
         return str(self.user)

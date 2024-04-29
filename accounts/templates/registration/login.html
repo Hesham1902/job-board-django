@@ -24,7 +24,9 @@
   </form>
 
   {# Assumes you set up the password_reset view in your URLconf #}
-  <p>
+  <p class="text-center">
+    <br />
     <a href="{% url 'password_reset' %}">Lost password?</a>
+    <a class="d-block" href="/accounts/signup">Don't have an account?</a>
   </p>
 {% endblock %}
