@@ -44,9 +44,6 @@ def profile_edit(request):
         user_form = UserForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
         if user_form.is_valid() and profile_form.is_valid():
-            print("Data is valid")
-            print(profile_form.cleaned_data)
-            print(request.FILES)
             user_form.save()
             myprofile = profile_form.save(commit=False)
             myprofile.user = request.user
