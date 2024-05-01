@@ -2,6 +2,7 @@ import json
 from django.http import Http404, HttpRequest, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from job.filters import JobFilter
 from job.models import Job
 from django.core.paginator import Paginator
 from .forms import JobForm, ApplicationForm
@@ -12,10 +13,16 @@ from django.contrib.auth.decorators import login_required
 
 def job_list(request):
     jobs = Job.objects.all()
+
+    filter = JobFilter(request.GET, queryset=jobs)
+    jobs = filter.qs
+
     paginator = Paginator(jobs, 3)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, "job/job_list.html", {"jobs": page_obj, "count": jobs.count})
+
+    context = {"jobs": page_obj, "count": jobs.count, "filter": filter}
+    return render(request, "job/job_list.html", context)
 
 
 def job_detail(request, slug):
@@ -50,5 +57,3 @@ def add_job(request):
         form = JobForm()
 
     return render(request, "job/add_job.html", {"form": form})
-
-
